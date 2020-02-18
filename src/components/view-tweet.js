@@ -30,7 +30,7 @@ class ViewTweet extends Component {
   handleLikeClick() {
     
     
-    this.
+    this.setState({likeCount:  this.state.likeCount+1, recentLikeTime})
     /*
       TASK 2
       Here's another big issue. When the like button is clicked, nothing but a log statement runs! 
