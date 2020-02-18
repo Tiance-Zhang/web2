@@ -4,7 +4,7 @@ class SiteBanner extends Component {
   render() {
    return (
       <header>
-       <h1>Decent Twitter</h1>
+       <h1>{this.props.bannerText}</h1>
       </header>
     );
   }
