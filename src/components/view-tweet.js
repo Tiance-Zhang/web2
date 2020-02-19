@@ -8,7 +8,7 @@ class ViewTweet extends Component {
     this.handleLikeClick = this.handleLikeClick.bind(this);
     
     // I wonder if this stuff here is any kind of hint... 🤔 
-    this.state = { likeCount: 0 };
+    this.state = { likeCount: 0, recentLikeTime: " " };
     console.log("This got passed into ViewTweet. I wonder why?", this.props.tweet);
   }
   
@@ -16,22 +16,19 @@ class ViewTweet extends Component {
     return <div className="view-tweet-component">
       <div className="tweet-content">
         {/* TASK 2: Well, this explains the whole "The text of the tweet" thing. What can we do about that? */}
-        <p>"The text of the tweet"</p>
+        <p>{this.props.tweet.text}</p>
         <p className="author-info">by <strong>@{this.props.tweet.author}</strong></p>
       </div>
       
-      {/* TASK 2: Here's part of the "likes" problem. The ViewTweet component is hard-coded to always display 0 likes. */}
-      <div className="likes">{this.state.likecount}</div>
-      
-      <input className="like-button" type="button" value="Like" onClick={this.handleLikeClick}></input>
-    </div>;
+        {/* TASK 2: Here's part of the "likes" problem. The ViewTweet component is hard-coded to always display 0 likes. */}
+      <div className="likes">{this.state.likeCount}</div>
+        
+        <input className="like-button" type="button" value="Like" onClick={this.handleLikeClick}></input>
+        <p className="like-time">Latest: {this.state.recentLikeTime.toString()}</p>
+      </div>;
   }
   
   handleLikeClick() {
-    
-    
-    this.setState({likeCount:  this.state.likeCount+1, recentLikeTime: new Date()});
-    console.log("like clicked");
     /*
       TASK 2
       Here's another big issue. When the like button is clicked, nothing but a log statement runs! 
@@ -39,8 +36,13 @@ class ViewTweet extends Component {
       have addressed the problem in render() above, you should see the like count increase by 1 every time
       you click the button.
     */
+    this.setState({likeCount: this.state.likeCount + 1, recentLikeTime: new Date()});
     console.log("Like clicked!");
   }
+
+  // componentDidMount() {
+  //   setInterval(() => this.setState({ recentLikeTime: new Date() }), 1000);
+  // }
 }
 
 export { ViewTweet }
